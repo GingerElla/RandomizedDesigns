@@ -1,0 +1,24 @@
+Hello and welcome to SimpleRipples!
+
+This is a simple program that creates interesting, somewhat random ripples.
+To begin, simply click anywhere and you will create a ripple right where you clicked!
+The longer you hold down the mouse button, the bigger the ripple will be, but watch out! They can get really big, really fast, so don't hold down the mouse too long.
+
+Too lazy to click to create ripples?
+No worries! Just press 'a' and we'll start generating some for you.
+
+Too many ripples? no worries! Press BACKSPACE and the screen will clear...
+BUT beware! While you will get a blank slate, there are no guarantees you'll get a black one back!
+
+Do you like what you have so much that you want to keep it?
+Great! Press SPACE and we'll save you a screenshot of your current design.
+
+Want to see the filenames of all the images you've saved so far?
+Sure thing! Just type 'i' for the index of all the images for this session.
+
+Ready to quit?
+We're sad to see you go, but go ahead and press 'q' for 'quit' or ESC.
+
+If you want to read this message again, simply press ENTER or type the 'h' key.
+
+Have fun!
