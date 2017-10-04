@@ -1,5 +1,6 @@
 import java.io.PrintWriter;
 
+import components.Design;
 import processing.core.*;
 
 public class RandomizedDesigns extends PApplet {
@@ -11,19 +12,6 @@ public class RandomizedDesigns extends PApplet {
 		PApplet.main(new String[] { "--present", "RandomizedDesigns" });
 	}
 
-	int numBands = 0;
-	int myRadius = 10;
-	int myX = width / 2;
-	int myY = height / 2;
-	float limiter;
-	float startTime = 0;
-	int iter = 0;
-	char shape = 'c'; // 'c' for circle, 'r' for rectangle, 't' for triangle
-	boolean makeRipple = false;
-	boolean auto = true;
-	boolean randomShapes = true;
-	int clear = -1;
-	int mySize = 10;
 	String[] introMessage;
 	PrintWriter writer;
 
@@ -42,110 +30,16 @@ public class RandomizedDesigns extends PApplet {
 
 	public void draw() {
 
-		// reset trigger
-		if (numBands * 100 > height * limiter) {
-			numBands = 0;
-			makeRipple = false;
-			if (auto) {
-				myX = (int) random(width);
-				myY = (int) random(height);
-				limiter = random(2);
-				randomShape();
-				randomClear();
-			}
-			iter++;
-		}
+		Design d = new Design();
+		d.resetTriggersWhen(100);
 
-		// draw and augment diameter
-		if (makeRipple || auto && (clear < 0)) {
-			randomNewRipple(myX, myY, myRadius);
-			myRadius += 10;
-		}
+		d.drawFrame();
 
-		if (clear > 0) {
-			clearFromDirection(clear, mySize);
-			mySize += 10; 
-			if (hasClearedScreen(mySize, clear)) {
-				clear = -1;
-				mySize = 0;
-			}
-		}
+		if (d.clearIsOn()) { d.clearScreen(); }
 
 		// trigger for new, smaller circle
-		if (myRadius > (height * limiter - numBands * 100)) {
-			if (shape == 't') { myY += 15; }
-			myRadius = 0;
-			numBands++;
-		}
+		d.createNewBandWhen(100);
 	} 
-
-	void randomNewRipple(int x, int y, int diameter) {  
-		if (diameter == 0) {
-			fill(random(255), random(255), random(255));
-		}
-
-		float radius = diameter/2;
-
-		switch (shape) {
-		case 'r' :
-			rectMode(2);
-			rect(x, y, radius, radius);
-			break;
-		case 't' :
-			triangle(x - radius, y + radius, 
-					x, y - radius, 
-					x + radius, y + radius);
-			break;
-		default :
-			ellipse(x, y, diameter, diameter);
-			break;
-		}
-	}
-
-	void randomShape() {
-		// pick a new random shape
-		if (randomShapes) {
-			int choice = (int) random(1000) % 3;
-			switch(choice) {
-			case 0 : 
-				shape = 'c';
-				break;
-			case 1:
-				shape = 'r';
-				break;
-			case 2 :
-				shape = 't';
-				break;
-			}
-		}
-	}
-
-	void randomClear() {
-		int chance = (int) random(100) % 10;
-		if (chance == 0) { clear = 1; }
-	}
-
-	void clearFromDirection(int direction, int size) {
-		switch (direction) {
-		case 1 : rect(0, 0, width, size);
-		break;
-		case 2 : rect(0, 0, size, height);
-		break;
-		case 3: rect(0, height - size, width, size);
-		break;
-		case 4: rect(width - size, 0, size, height);
-		break;
-		}
-	}
-
-	private boolean hasClearedScreen(int size, int direction) {
-		boolean isVertical = (direction % 2) == 0;
-		if (isVertical) {
-			return size > height;
-		} else {
-			return size > width;
-		}
-	}
 
 	private String currentTime() {
 		String time;
