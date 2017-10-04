@@ -21,7 +21,7 @@ public class Graphics {
 	public int tossForRandomClear() {
 		int chance = (int) p.random(100);
 		if (chance % 10 == 0) { 
-			return chance % 4;
+			return chance % 3;
 		}
 		return -1;
 	}

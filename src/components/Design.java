@@ -12,7 +12,6 @@ public class Design {
 	int x = p.width / 2;
 	int y = p.height / 2;
 	float limiter;
-	float startTime = 0;
 	int iteration = 0;
 	char shape = 'c'; // 'c' for circle, 'r' for rectangle, 't' for triangle
 	int clearDirection = -1;
