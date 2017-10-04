@@ -21,9 +21,18 @@ public class Controller {
 	}
 	
 	public Controller(PApplet parent, Design d, PrintWriter writer) {
-		this.p = parent;
+		this(parent);
 		this.d = d;
-		introMessage = p.loadStrings("introMessage.txt");
+		this.writer = writer;
+	}
+	
+	public void draw() {
+		p.noStroke();
+		
+		d.resetTriggersWhen(100);
+		d.draw();
+		if (d.clearIsOn()) { d.clearScreen(); }
+		d.createNewBandWhen(100);
 	}
 
 	@SuppressWarnings("static-access")
@@ -53,7 +62,6 @@ public class Controller {
 
 	@SuppressWarnings("static-access")
 	public void keyPressed() {
-		
 		switch (p.key) {
 		case ' ' :
 			String filename = "SimpleRipples" + d.iteration + "-" + currentTime() + ".png";
@@ -87,7 +95,7 @@ public class Controller {
 			}
 			break;
 		case 'q' : 
-			d.randomShapes = true;
+			d.randomShapes = !(d.randomShapes);
 			break;
 		case 'c' :
 			d.shape = 'c';
@@ -106,6 +114,8 @@ public class Controller {
 			writer.close();
 			p.exit();
 			break;
+		default :
+			return;
 		}
 	}
 

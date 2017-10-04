@@ -24,21 +24,26 @@ public class RandomizedDesigns extends PApplet {
 
 	public void setup() {
 		frameRate(60);
-		background(0);
-		noStroke();
 		writer  = createWriter("index.txt");
 		d = new Design(this);
 		c = new Controller(this, d, writer);
 		c.printIntroMessage();
+		background(0);
 	}
 
 	public void draw() {
-		d.resetTriggersWhen(100);
-
-		d.drawFrame();
-		
-		if (d.clearIsOn()) { d.clearScreen(); }
-
-		d.createNewBandWhen(100);
+		c.draw();
 	} 
+	
+	public void keyPressed() {
+		c.keyPressed();
+	}
+	
+	public void mousePressed() {
+		c.mousePressed();
+	}
+	
+	public void mouseReleased() {
+		c.mouseReleased();
+	}
 }

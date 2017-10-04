@@ -21,40 +21,18 @@ public class Design {
 
 	public Design(PApplet parent) {
 		this.p = parent;
-		this.g= new Graphics(parent);
+		this.g = new Graphics(parent);
 		this.x = p.width / 2;
 		this.y = p.height / 2;
-	}
-
-	public Design(PApplet parent, boolean auto, 
-			int radius, boolean randomShapes) {
-		this(parent, auto, randomShapes);
-		this.radius = radius;
 	}
 
 	public Design(PApplet parent, boolean auto) {
 		this(parent);
 		this.auto = auto;
 	}
-
-	public Design(PApplet parent, int radius) {
-		this(parent);
-		this.radius = radius;
-	}
-
-	public Design(PApplet parent, boolean auto, int radius) {
-		this(parent, auto);
-		this.radius = radius;
-	}
-
-	public Design(PApplet parent, boolean auto, boolean randomShapes) {
-		this(parent, auto);
-		this.randomShapes = randomShapes;
-	}
-
-	public Design(PApplet parent, int radius, boolean randomShapes) {
-		this(parent, radius);
-		this.randomShapes = randomShapes;
+	
+	public void draw() {
+		drawFrame();	
 	}
 
 	public boolean clearIsOn() {
@@ -80,7 +58,7 @@ public class Design {
 
 	public void drawFrame() {
 		// draw shape and augment diameter
-		if (this.makeRipple || this.auto && (this.clearDirection >= 0)) {
+		if (this.makeRipple || (this.auto && (this.clearDirection < 0))) {
 			g.createRandomRipple(this.x, this.y, this.radius, this.shape);
 			this.radius += 10;
 		}

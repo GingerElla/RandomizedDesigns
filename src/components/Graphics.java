@@ -55,23 +55,23 @@ public class Graphics {
 
 	public void clearFromDirection(int direction, int size) {
 		switch (direction) {
-		case 1 : 
+		case 1 : // top to bottom
 			p.rect(0, 0, p.width, size);
 			break;
-		case 2 : 
+		case 2 : // left to right
 			p.rect(0, 0, size, p.height);
 			break;
-		case 3: 
+		case 3:  // bottom to top
 			p.rect(0, p.height - size, p.width, size);
 			break;
-		default: 
+		default: // right to left
 			p.rect(p.width - size, 0, size, p.height);
 			break;
 		}
 	}
 
 	public boolean hasClearedScreen(int direction, int size) {
-		boolean isVertical = (direction % 2) == 0;
+		boolean isVertical = (direction % 2) == 1;
 		if (isVertical) {
 			return size > p.height;
 		} else {
