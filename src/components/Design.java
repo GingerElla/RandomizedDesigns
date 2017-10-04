@@ -9,8 +9,8 @@ public class Design {
 	int numBands = 0;
 	int radius = 10;
 	int clearSize = 10;
-	int x = p.width / 2;
-	int y = p.height / 2;
+	int x;
+	int y;
 	float limiter;
 	int iteration = 0;
 	char shape = 'c'; // 'c' for circle, 'r' for rectangle, 't' for triangle
@@ -19,33 +19,41 @@ public class Design {
 	boolean auto = true;
 	boolean randomShapes = true;
 
-	public Design() { }
+	public Design(PApplet parent) {
+		this.p = parent;
+		this.g= new Graphics(parent);
+		this.x = p.width / 2;
+		this.y = p.height / 2;
+	}
 
-	public Design(boolean auto, int radius, boolean randomShapes) {
-		this(auto, randomShapes);
+	public Design(PApplet parent, boolean auto, 
+			int radius, boolean randomShapes) {
+		this(parent, auto, randomShapes);
 		this.radius = radius;
 	}
 
-	public Design(boolean auto) {
+	public Design(PApplet parent, boolean auto) {
+		this(parent);
 		this.auto = auto;
 	}
 
-	public Design(int radius) {
+	public Design(PApplet parent, int radius) {
+		this(parent);
 		this.radius = radius;
 	}
 
-	public Design(boolean auto, int radius) {
-		this(auto);
+	public Design(PApplet parent, boolean auto, int radius) {
+		this(parent, auto);
 		this.radius = radius;
 	}
 
-	public Design(boolean auto, boolean randomShapes) {
-		this(auto);
+	public Design(PApplet parent, boolean auto, boolean randomShapes) {
+		this(parent, auto);
 		this.randomShapes = randomShapes;
 	}
 
-	public Design(int radius, boolean randomShapes) {
-		this(radius);
+	public Design(PApplet parent, int radius, boolean randomShapes) {
+		this(parent, radius);
 		this.randomShapes = randomShapes;
 	}
 

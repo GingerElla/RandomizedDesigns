@@ -4,6 +4,10 @@ import processing.core.PApplet;
 
 public class Graphics {
 	private PApplet p;
+	
+	public Graphics(PApplet parent) {
+		this.p = parent;
+	}
 
 	public char pickRandomShape() {
 		// pick a new random shape

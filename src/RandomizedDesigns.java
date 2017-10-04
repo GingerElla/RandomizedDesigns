@@ -12,7 +12,8 @@ public class RandomizedDesigns extends PApplet {
 		//if package is defaults, just need ClassName
 		PApplet.main(new String[] { "--present", "RandomizedDesigns" });
 	}
-
+	
+	
 	PrintWriter writer;
 	Controller c;
 	Design d;
@@ -26,17 +27,16 @@ public class RandomizedDesigns extends PApplet {
 		background(0);
 		noStroke();
 		writer  = createWriter("index.txt");
-		d = new Design();
-		c = new Controller(d, writer);
+		d = new Design(this);
+		c = new Controller(this, d, writer);
 		c.printIntroMessage();
 	}
 
 	public void draw() {
-
 		d.resetTriggersWhen(100);
 
 		d.drawFrame();
-
+		
 		if (d.clearIsOn()) { d.clearScreen(); }
 
 		d.createNewBandWhen(100);

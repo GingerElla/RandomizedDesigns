@@ -15,11 +15,13 @@ public class Controller {
 	private int startTime = 0;
 	private String[] introMessage;
 	
-	public Controller() {
+	public Controller(PApplet parent) {
+		this.p = parent;
 		introMessage = p.loadStrings("introMessage.txt");
 	}
 	
-	public Controller(Design d, PrintWriter writer) {
+	public Controller(PApplet parent, Design d, PrintWriter writer) {
+		this.p = parent;
 		this.d = d;
 		introMessage = p.loadStrings("introMessage.txt");
 	}
